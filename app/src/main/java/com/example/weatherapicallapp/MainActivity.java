@@ -68,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
         btn_getWeatherByID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "GET ID", Toast.LENGTH_SHORT).show();
+
+
+                weatherDataService.getCityForecastByID("44418");
+
             }
         });
         btn_getWeatherByName.setOnClickListener(new View.OnClickListener() {
