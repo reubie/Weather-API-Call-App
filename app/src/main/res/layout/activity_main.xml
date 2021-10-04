@@ -10,7 +10,7 @@
         android:id="@+id/get_CityID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="City ID"
         app:layout_constraintEnd_toStartOf="@id/btn_getWeatherByCityID"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,7 +19,7 @@
         android:id="@+id/btn_getWeatherByCityID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Weather ID"
         app:layout_constraintEnd_toStartOf="@+id/btn_getWeatherByCityName"
         app:layout_constraintStart_toEndOf="@+id/get_CityID"
         app:layout_constraintTop_toTopOf="@+id/get_CityID" />
@@ -28,8 +28,29 @@
         android:id="@+id/btn_getWeatherByCityName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Weather Name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_getWeatherByCityID"
-        app:layout_constraintStart_toEndOf="@id/btn_getWeatherByCityID"/>
+        app:layout_constraintStart_toEndOf="@id/btn_getWeatherByCityID"
+        app:layout_constraintTop_toTopOf="@+id/btn_getWeatherByCityID" />
+
+    <EditText
+        android:id="@+id/et_dataInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="City Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/get_CityID" />
+
+    <ListView
+        android:id="@+id/lv_weatherreports"
+        android:layout_width="409dp"
+        android:layout_height="628dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_dataInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>
