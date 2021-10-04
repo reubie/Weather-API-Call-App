@@ -33,6 +33,9 @@ public class WeatherReportModel {
         this.predictability = predictability;
     }
 
+    public WeatherReportModel() {
+    }
+
     @Override
     public String toString() {
         return "WeatherReportModel{" +

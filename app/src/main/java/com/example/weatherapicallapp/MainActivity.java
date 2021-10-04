@@ -70,7 +70,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                weatherDataService.getCityForecastByID("44418");
+                weatherDataService.getCityForecastByID(et_dataInput.getText().toString(), new WeatherDataService.ForeCastByIDResponse() {
+                    @Override
+                    public void onError(String message) {
+
+                        Toast.makeText(MainActivity.this, "SOmethings Wrong ", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(WeatherReportModel weatherReportModel) {
+
+                        Toast.makeText(MainActivity.this, weatherReportModel.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
             }
         });
