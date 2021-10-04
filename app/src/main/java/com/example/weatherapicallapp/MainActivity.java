@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     EditText et_dataInput;
     ListView lv_weatherReport;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         et_dataInput = findViewById(R.id.et_dataInput);
         lv_weatherReport = findViewById(R.id.lv_weatherreports);
+        final WeatherDataService weatherDataService = new WeatherDataService(MainActivity.this);
 
 //        click listeners for the buttons in the layout
 
@@ -48,34 +50,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-
-                // Instantiate the RequestQueue.
-//                RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
-                String url ="https://www.metaweather.com/api/location/search/?query=" + et_dataInput.getText().toString();
-
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                 weatherDataService.getcityID(et_dataInput.getText().toString(), new WeatherDataService.VolleyResponseListener() {
                     @Override
-                    public void onResponse(JSONArray response) {
-
-                        String cityID ="";
-                        try {
-                            JSONObject cityInfo = response.getJSONObject(0);
-                            cityID = cityInfo.getString("woeid");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        Toast.makeText(MainActivity.this, "City ID = " + cityID , Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this, "Something Wrong", Toast.LENGTH_SHORT).show();
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this, "SOmethings Wrong ", Toast.LENGTH_SHORT).show();
                     }
 
+                    @Override
+                    public void onResponse(String cityID) {
+                        Toast.makeText(MainActivity.this, "Returned the ID of " + cityID, Toast.LENGTH_SHORT).show();
+                    }
                 });
-                MySingleton.getInstance(MainActivity.this).addToRequestQueue(request);
 
+//                This did not return the city id
             }
         });
         btn_getWeatherByID.setOnClickListener(new View.OnClickListener() {
